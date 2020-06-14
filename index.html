@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+    
+<div id='left_0'>
     <div id='left'>   
         <ul>
             <li data-sign="DEVMAN" id="devman"><span class="chevron chevron-right" data-sign="spanDEVMAN"></span>&#8194;Development Management
@@ -33,6 +35,19 @@
             </li>
         </ul>
     </div>
+    <div id ='left_right'>
+        <div>
+            <select id="curr_sel">
+                <option value="0" selected>BYN</option>
+            </select>
+        </div>
+        <div>
+            <button id='clear'>Clear page</button>
+        </div>
+    </div>
+</div>
+
+
     <div id="right">
         <table id='tableMain'>
             <tr>
@@ -43,16 +58,6 @@
                 <td>Salary</td>
             </tr>
         </table>
-    </div>
-
-    <div>
-        <select id="curr_sel">
-            <option value="0" selected>BYN</option>
-        </select>
-    </div>
-
-    <div>
-        <button id='clear'>Clear page</button>
     </div>
 
     <script src='./src/src.js'></script>
