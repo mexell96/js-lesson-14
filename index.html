@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div id='left'>   
+        <ul>
+            <li data-sign="DEVMAN" id="devman"><span class="chevron chevron-right" data-sign="spanDEVMAN"></span>&#8194;Development Management
+                <ul>
+                    <li data-sign="LEADDEV" id="leaddev" class="displayInline"><span class="chevron chevron-right" data-sign="spanLEADDEV"></span>&#8194;Lead Developers
+                        <ul>
+                            <li data-sign="DEV" id="dev" class="displayInline">&#8194;Developers
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <ul>
+            <li data-sign="QUALMAN" id="qualman"><span class="chevron chevron-right" data-sign="spanQUALMAN"></span>&#8194;Quality Assurance Management
+                <ul>
+                    <li data-sign="LEADQA" id="leadqa" class="displayInline"><span class="chevron chevron-right" data-sign="spanLEADQA"></span>&#8194;Lead QA
+                        <ul>
+                            <li data-sign="TESTERS" id="testers" class="displayInline">&#8194;Testers
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div id="right">
+        <table id='tableMain'>
+            <tr>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Dept-unit-id</td>
+                <td>Telephone</td>
+                <td>Salary</td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <select id="curr_sel">
+            <option value="0" selected>BYN</option>
+        </select>
+    </div>
+
+    <div>
+        <button id='clear'>Clear page</button>
+    </div>
+
+    <script src='./src/src.js'></script>
+</body>
+</html>
