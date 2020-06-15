@@ -39,8 +39,17 @@ async function init () {
                 qualman.classList.remove('bold');
                 leadqa.classList.remove('bold');
                 testers.classList.remove('bold');
-
-                
+                //-------------------------------------
+                Devel.classList.remove('displayNone');
+                LeadDev.classList.toggle('displayNone');
+                Testers.classList.toggle('displayNone');
+                LeadQa.classList.toggle('displayNone');
+                //-------------------------------------
+                Devel.classList.add('displayInline');
+                LeadDev.classList.add('displayInline');
+                Testers.classList.add('displayInline');
+                LeadQa.classList.add('displayInline');
+                //-----------------------------------------
                 curr_sel.value = '0';
                 currRate = '1';
                 currScale = '1';
@@ -80,24 +89,28 @@ async function init () {
         left.addEventListener('click', function (ev) {
             if (ev.target.nodeName === "LI" && ev.target.dataset.sign === 'DEV') {
                 perem = developer.all_stuff;
+                ev.target.classList.add('bold');
             }
             if (ev.target.nodeName === "LI" && ev.target.dataset.sign === 'LEADDEV') {
                 perem = devLead.all_stuff;
+                ev.target.classList.add('bold');
             }
             if (ev.target.nodeName === "LI" && ev.target.dataset.sign === 'DEVMAN') {
                 perem = devDeptHead.all_stuff;
+                ev.target.classList.add('bold');
             }
             if (ev.target.nodeName === "LI" && ev.target.dataset.sign === 'TESTERS') {
                 perem = qaTester.all_stuff;
+                ev.target.classList.add('bold');
             }
             if (ev.target.nodeName === "LI" && ev.target.dataset.sign === 'LEADQA') {
                 perem = qaLead.all_stuff;
+                ev.target.classList.add('bold');
             }
             if (ev.target.nodeName === "LI" && ev.target.dataset.sign === 'QUALMAN') {
                 perem = qaDeptHead.all_stuff;
+                ev.target.classList.add('bold');
             }  
-            // выделение жирным------------------------------------------------------------------------------------
-            ev.target.classList.add('bold');
             //удаление строк из таблицы, кроме первой-----------------------------------------------------------------
             for(var i = 1; i < tableMain.rows.length;){
                 tableMain.deleteRow(i);
@@ -317,6 +330,7 @@ left.addEventListener('click', function (ev) {
 // шеврон Development Management и др
 const Devel = document.getElementById('dev');
 const LeadDev = document.getElementById('leaddev');
+const DevMan = document.getElementById('devman');
 left.addEventListener('click', function (ev) {
    if (ev.target.nodeName === 'SPAN' && ev.target.dataset.sign === 'spanLEADDEV') {
       ev.target.classList.toggle('chevron-right');
@@ -334,6 +348,7 @@ left.addEventListener('click', function (ev) {
 // шеврон Quality Assurance Management и др
 const Testers = document.getElementById('testers');
 const LeadQa = document.getElementById('leadqa');
+const QualMan = document.getElementById('qualman');
 left.addEventListener('click', function (ev) {
    if (ev.target.nodeName === 'SPAN' && ev.target.dataset.sign === 'spanLEADQA') {
       ev.target.classList.toggle('chevron-right');
@@ -354,24 +369,28 @@ left.addEventListener('click', function (ev) {
 left.addEventListener('click', function (ev) {
     if (ev.target.nodeName === "LI" && ev.target.dataset.sign === 'DEV') {
         perem = developer.all_stuff;
+        ev.target.classList.add('bold');
     }
     if (ev.target.nodeName === "LI" && ev.target.dataset.sign === 'LEADDEV') {
         perem = devLead.all_stuff;
+        ev.target.classList.add('bold');
     }
     if (ev.target.nodeName === "LI" && ev.target.dataset.sign === 'DEVMAN') {
         perem = devDeptHead.all_stuff;
+        ev.target.classList.add('bold');
     }
     if (ev.target.nodeName === "LI" && ev.target.dataset.sign === 'TESTERS') {
         perem = qaTester.all_stuff;
+        ev.target.classList.add('bold');
     }
     if (ev.target.nodeName === "LI" && ev.target.dataset.sign === 'LEADQA') {
         perem = qaLead.all_stuff;
+        ev.target.classList.add('bold');
     }
     if (ev.target.nodeName === "LI" && ev.target.dataset.sign === 'QUALMAN') {
         perem = qaDeptHead.all_stuff;
+        ev.target.classList.add('bold');
     }  
-    // выделение жирным------------------------------------------------------------------------------------
-    ev.target.classList.add('bold');
     //удаление строк из таблицы, кроме первой-----------------------------------------------------------------
     for(var i = 1; i < tableMain.rows.length;){
         tableMain.deleteRow(i);
@@ -401,7 +420,17 @@ document.getElementById('clear').addEventListener('click', function (ev) {
         qualman.classList.remove('bold');
         leadqa.classList.remove('bold');
         testers.classList.remove('bold');
-
+        //-------------------------------------
+        Devel.classList.remove('displayNone');
+        LeadDev.classList.toggle('displayNone');
+        Testers.classList.toggle('displayNone');
+        LeadQa.classList.toggle('displayNone');
+        //-------------------------------------
+        Devel.classList.add('displayInline');
+        LeadDev.classList.add('displayInline');
+        Testers.classList.add('displayInline');
+        LeadQa.classList.add('displayInline');
+        //-----------------------------------------
         for(var i = 1; i < tableMain.rows.length;){
         tableMain.deleteRow(i);
         }
