@@ -151,7 +151,7 @@ table {
 @media screen and (max-width: 450px) {
     #left {
         height: 98px;
-        width: 270px;
+        width: 310px;
     }
     #right {
         width: 448px;
@@ -161,8 +161,8 @@ table {
     }
     td {
         height: 20px;
-        width: 52px;
-        font-size: 9px;
+        width: 60px;
+        font-size: 10px;
     }
     #curr_sel {
         font-size: 10px;
@@ -186,6 +186,6 @@ table {
         flex-direction: column;
     }
     #left_right {
-        width: 270px;
+        width: 310px;
     }
 }
