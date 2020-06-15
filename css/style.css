@@ -10,7 +10,7 @@ body {
     flex-direction: column;
     height: 250px;
     width: 600px;
-    background-color: chartreuse;
+    background-color: rgba(217, 236, 38, 0.644);
 }
 #right {
     width: 800px;
@@ -18,15 +18,16 @@ body {
 .bold {
     font-weight: bold;
 }
-ul {
-    font-weight: 100;
+.ul1{ 
+    height: 84px;
 }
 li {
+    font-weight: 100;
     list-style-type: none;
     font-size: 25px;
 }
 td {
-    background-color: red;
+    background-color: rgba(200, 255, 0, 0.863);
     border: 1px solid black;
     height: 50px;
     width: 148px;
@@ -34,7 +35,6 @@ td {
     text-align: center;
     margin: 0;
     padding: 0;
-    b
 }
 table {
     border-spacing: 0;
@@ -65,14 +65,13 @@ table {
     display: inline;
 }
 #curr_sel {
-    background-color: blanchedalmond;
+    background-color: rgb(253, 236, 211);
     font-size: 25px;
     height: 50px;
     width: 150px;
 }
-
 #clear {
-    background-color: blanchedalmond;
+    background-color: rgb(253, 236, 211);
     font-size: 25px;
     width: 150px;
     height: 200px;
@@ -84,20 +83,109 @@ table {
 #left_right {
     display: flex;
     flex-direction: column;
-    background-color: firebrick;
+    background-color: rgba(217, 236, 38, 0.644);
 }
 
 
-
-
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1080px) {
+    #left {
+        height: 200px;
+        width: 480px;
+    }
+    #right {
+        width: 640px;
+    }
+    li {
+        font-size: 20px;
+    }
     td {
-        background-color: red;
-        border: 1px solid black;
-        height: 50px;
-        width: 150px;
-        font-size: 5px;
-        text-align: center;
+        height: 40px;
+        width: 118px;
+        font-size: 20px;
+    }
+    #curr_sel {
+        font-size: 20px;
+        height: 40px;
+        width: 120px;
+    }
+    #clear {
+        font-size: 20px;
+        width: 120px;
+        height: 160px;
     }
 }
-/* доделать */
+@media screen and (max-width: 736px) {
+    #left {
+        height: 140px;
+        width: 340px;
+    }
+    #right {
+        width: 448px;
+    }
+    li {
+        font-size: 14px;
+    }
+    td {
+        height: 28px;
+        width: 82.6px;
+        font-size: 14px;
+    }
+    #curr_sel {
+        font-size: 14px;
+        height: 28px;
+        width: 85px;
+    }
+    #clear {
+        font-size: 14px;
+        width: 85px;
+        height: 112px;
+        border: 1px solid;
+    }
+    #ul1 {
+        margin: 12px;
+    }
+    #ul4 {
+        margin: 12px;
+    }
+}
+@media screen and (max-width: 450px) {
+    #left {
+        height: 98px;
+        width: 270px;
+    }
+    #right {
+        width: 448px;
+    }
+    li {
+        font-size: 10px;
+    }
+    td {
+        height: 20px;
+        width: 52px;
+        font-size: 10px;
+    }
+    #curr_sel {
+        font-size: 10px;
+        height: 20px;
+        width: 55px;
+    }
+    #clear {
+        font-size: 10px;
+        width: 55px;
+        height: 78px;
+        border: 1px solid;
+    }
+    #ul1 {
+        margin: 6px;
+    }
+    #ul4 {
+        margin: 6px;
+    }
+    #left_0 {
+        display: flex;
+        flex-direction: column;
+    }
+    #left_right {
+        width: 270px;
+    }
+}
