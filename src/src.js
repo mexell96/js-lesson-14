@@ -1,6 +1,9 @@
 const currIds = [145, 292, 298];
 const currenciesCache = {};
 
+let currRate = '1';
+let currScale = '1';
+
 init();
 
 async function init () {
@@ -9,80 +12,34 @@ async function init () {
 
     currencies.forEach(currency => {
         currenciesCache[currency.Curr_ID] = currency;
-    })
+    });
 
-    createCurrOptions(currencies); 
+    createCurrOptions(currencies);
 
     document.getElementById('curr_sel').addEventListener('click', async () => {
         let selectEl = document.getElementById('curr_sel');
         const selectedCurrId = selectEl.value;
-        //console.log(selectedCurrId);
-        //let fetchedCurrRate = await getCurrRate(selectedCurrId);
-        //console.log(fetchedCurrRate);
-        //let currScale = fetchedCurrRate.Cur_Scale;
-        //let currRate = fetchedCurrRate.Cur_OfficialRate;
+        console.log(selectedCurrId);
         
         if (selectedCurrId != '0') {
             fetchedCurrRate = await getCurrRate(selectedCurrId);
             currRate = fetchedCurrRate.Cur_OfficialRate;
             currScale = fetchedCurrRate.Cur_Scale;
-        } else {
-            currRate = '1';
-            currScale = '1';
         }
-        // кнопка очистить------------------------------------------------------------------------------------------
-        document.getElementById('clear').addEventListener('click', function (ev) {
-            if (ev.target.nodeName === "BUTTON") {
-                devman.classList.remove('bold');
-                leaddev.classList.remove('bold');
-                dev.classList.remove('bold');
-                qualman.classList.remove('bold');
-                leadqa.classList.remove('bold');
-                testers.classList.remove('bold');
-                //-------------------------------------
-                Devel.classList.remove('displayNone');
-                LeadDev.classList.remove('displayNone');
-                Testers.classList.remove('displayNone');
-                LeadQa.classList.remove('displayNone');
-                Spandevmam.classList.remove('chevron-bottom');
-                Spanleaddev.classList.remove('chevron-bottom');
-                Spanqualman.classList.remove('chevron-bottom');
-                Spanleadqa.classList.remove('chevron-bottom');
-                //-------------------------------------
-                Devel.classList.add('displayInline');
-                LeadDev.classList.add('displayInline');
-                Testers.classList.add('displayInline');
-                LeadQa.classList.add('displayInline');
-                Spandevmam.classList.add('chevron-right');
-                Spanleaddev.classList.add('chevron-right');
-                Spanqualman.classList.add('chevron-right');
-                Spanleadqa.classList.add('chevron-right');
-                //-----------------------------------------
-                curr_sel.value = '0';
-                currRate = '1';
-                currScale = '1';
-
-                perem = [];
-
-                for(var i = 1; i < tableMain.rows.length;){
-                tableMain.deleteRow(i);
-                }
-            }
-        })
         //----------------------------------------------------------------------------------------------------
         function onClickRate() {
-            //удаление строк из таблицы, кроме первой-----------------------------------------------------------------
+            //удаление строк из таблицы, кроме первой---------------------------------------------------------
             for(var i = 1; i < tableMain.rows.length;){
                 tableMain.deleteRow(i);
             }
-            //добавление строк tr в которых находятся колонки td---------------------------------------------------------
+            //добавление td в tr-------------------------------------------------------------------------------
             for (let i = 0; i < perem.length; i++) {
                 block = document.createElement('tr');
                 tableMain.append(block);
                 for (let obj in perem[i]) {
                     const tdList = document.createElement('td');
                     if (obj === 'salary') {
-                        newDev = (perem[i][obj] / currRate) * currScale;  //--------------------------------------нужный курс валют
+                        newDev = (perem[i][obj] / currRate) * currScale;  //-------------------нужный курс валют
                         newDevCurr = newDev.toFixed(0);
                     } else {
                         newDevCurr = perem[i][obj];
@@ -93,57 +50,9 @@ async function init () {
             }
         };
         onClickRate();
-
-        left.addEventListener('click', function (ev) {
-            if (ev.target.nodeName === "LI" && ev.target.dataset.sign === 'DEV') {
-                perem = developer.all_stuff;
-                ev.target.classList.add('bold');
-            }
-            if (ev.target.nodeName === "LI" && ev.target.dataset.sign === 'LEADDEV') {
-                perem = devLead.all_stuff;
-                ev.target.classList.add('bold');
-            }
-            if (ev.target.nodeName === "LI" && ev.target.dataset.sign === 'DEVMAN') {
-                perem = devDeptHead.all_stuff;
-                ev.target.classList.add('bold');
-            }
-            if (ev.target.nodeName === "LI" && ev.target.dataset.sign === 'TESTERS') {
-                perem = qaTester.all_stuff;
-                ev.target.classList.add('bold');
-            }
-            if (ev.target.nodeName === "LI" && ev.target.dataset.sign === 'LEADQA') {
-                perem = qaLead.all_stuff;
-                ev.target.classList.add('bold');
-            }
-            if (ev.target.nodeName === "LI" && ev.target.dataset.sign === 'QUALMAN') {
-                perem = qaDeptHead.all_stuff;
-                ev.target.classList.add('bold');
-            }  
-            //удаление строк из таблицы, кроме первой-----------------------------------------------------------------
-            for(var i = 1; i < tableMain.rows.length;){
-                tableMain.deleteRow(i);
-            }
-            //добавление строк tr в которых находятся колонки td---------------------------------------------------------
-            for (let i = 0; i < perem.length; i++) {
-                block = document.createElement('tr');
-                tableMain.append(block);
-                for (let obj in perem[i]) {
-                    const tdList = document.createElement('td');
-                    if (obj === 'salary') {
-                        newDev = (perem[i][obj] / currRate) * currScale;  //--------------------------------------нужный курс валют
-                        newDevCurr = newDev.toFixed(0);
-                    } else {
-                        newDevCurr = perem[i][obj];
-                    }
-                    block.append(tdList);
-                    tdList.append(newDevCurr);
-                }
-            }
-        })
     });
 }
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////
+//------------------------------------------------------------------------------------------------------------
 async function fetchCurr(id) {
     const url = id
     ? 'https://www.nbrb.by/api/exrates/currencies/' + id
@@ -169,7 +78,6 @@ async function getCurrRate(currId) {
     const response = await fetch('https://www.nbrb.by/api/exrates/rates/' + currId);
     return response.json();
 }
-
 //-----------------------------------------------------------------------------------------------------
 const employeers = [
     {
@@ -333,16 +241,18 @@ left.addEventListener('click', function (ev) {
     testers.classList.remove('bold');
    }
 });
-// шеврон------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------
 const Devel = document.getElementById('dev');
 const LeadDev = document.getElementById('leaddev');
 const DevMan = document.getElementById('devman');
 const Testers = document.getElementById('testers');
 const LeadQa = document.getElementById('leadqa');
 const QualMan = document.getElementById('qualman');
-
-
-
+const Spandevmam = document.getElementById('spandevmam');
+const Spanleaddev= document.getElementById('spanleaddev');
+const Spanqualman = document.getElementById('spanqualman');
+const Spanleadqa = document.getElementById('spanleadqa');
+// шеврон------------------------------------------------------------------------------------------
 left.addEventListener('click', function (ev) {
     if (ev.target.nodeName === 'SPAN' && ev.target.dataset.sign === 'spanLEADDEV') {
         ev.target.classList.toggle('chevron-right');
@@ -369,7 +279,45 @@ left.addEventListener('click', function (ev) {
         LeadQa.classList.toggle('displayNone');
     }
 });
-//проверяем какой отдел выбираем-------------------------------------------------------------------------------------
+// кнопка очистить------------------------------------------------------------------------------------------
+document.getElementById('clear').addEventListener('click', function (ev) {
+    if (ev.target.nodeName === "BUTTON") {
+        devman.classList.remove('bold');
+        leaddev.classList.remove('bold');
+        dev.classList.remove('bold');
+        qualman.classList.remove('bold');
+        leadqa.classList.remove('bold');
+        testers.classList.remove('bold');
+        //----------------------------------------
+        Devel.classList.remove('displayNone');
+        LeadDev.classList.remove('displayNone');
+        Testers.classList.remove('displayNone');
+        LeadQa.classList.remove('displayNone');
+        Spandevmam.classList.remove('chevron-bottom');
+        Spanleaddev.classList.remove('chevron-bottom');
+        Spanqualman.classList.remove('chevron-bottom');
+        Spanleadqa.classList.remove('chevron-bottom');
+        //----------------------------------------
+        Devel.classList.add('displayInline');
+        LeadDev.classList.add('displayInline');
+        Testers.classList.add('displayInline');
+        LeadQa.classList.add('displayInline');
+        Spandevmam.classList.add('chevron-right');
+        Spanleaddev.classList.add('chevron-right');
+        Spanqualman.classList.add('chevron-right');
+        Spanleadqa.classList.add('chevron-right');
+        //-----------------------------------------
+        curr_sel.value = '0';
+        currRate = '1';
+        currScale = '1';
+        perem = [];
+        //----------------------------------------
+        for(var i = 1; i < tableMain.rows.length;){
+        tableMain.deleteRow(i);
+        }
+    }
+})
+//проверяем какой отдел выбираем-------------------------------------------------------------------------------
 left.addEventListener('click', function (ev) {
     if (ev.target.nodeName === "LI" && ev.target.dataset.sign === 'DEV') {
         perem = developer.all_stuff;
@@ -405,54 +353,18 @@ left.addEventListener('click', function (ev) {
         tableMain.append(block);
         for (let obj in perem[i]) {
             const tdList = document.createElement('td');
+            // if (currRate === undefined) {
+            //     currRate = '1';
+            //     currScale = '1';
+            // }
             if (obj === 'salary') {
-                newDev = perem[i][obj];  //--------------------------------------нужный курс валют
+                newDev = (perem[i][obj] / currRate * currScale);  //--------------------------------------нужный курс валют
+                newDevCurr = newDev.toFixed(0);
             } else {
-                newDev = perem[i][obj];
+                newDevCurr = perem[i][obj];
             }
             block.append(tdList);
-            tdList.append(newDev);
-        }
-    }
-})
-// кнопка очистить------------------------------------------------------------------------------------------
-
-const Spandevmam = document.getElementById('spandevmam');
-const Spanleaddev= document.getElementById('spanleaddev');
-const Spanqualman = document.getElementById('spanqualman');
-const Spanleadqa = document.getElementById('spanleadqa');
-
-
-
-document.getElementById('clear').addEventListener('click', function (ev) {
-    if (ev.target.nodeName === "BUTTON") {
-        devman.classList.remove('bold');
-        leaddev.classList.remove('bold');
-        dev.classList.remove('bold');
-        qualman.classList.remove('bold');
-        leadqa.classList.remove('bold');
-        testers.classList.remove('bold');
-        //-------------------------------------
-        Devel.classList.remove('displayNone');
-        LeadDev.classList.remove('displayNone');
-        Testers.classList.remove('displayNone');
-        LeadQa.classList.remove('displayNone');
-        Spandevmam.classList.remove('chevron-bottom');
-        Spanleaddev.classList.remove('chevron-bottom');
-        Spanqualman.classList.remove('chevron-bottom');
-        Spanleadqa.classList.remove('chevron-bottom');
-        //-------------------------------------
-        Devel.classList.add('displayInline');
-        LeadDev.classList.add('displayInline');
-        Testers.classList.add('displayInline');
-        LeadQa.classList.add('displayInline');
-        Spandevmam.classList.add('chevron-right');
-        Spanleaddev.classList.add('chevron-right');
-        Spanqualman.classList.add('chevron-right');
-        Spanleadqa.classList.add('chevron-right');
-        //-----------------------------------------
-        for(var i = 1; i < tableMain.rows.length;){
-        tableMain.deleteRow(i);
+            tdList.append(newDevCurr);
         }
     }
 })
