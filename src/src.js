@@ -326,46 +326,40 @@ left.addEventListener('click', function (ev) {
     testers.classList.remove('bold');
    }
 });
-//-----------------------------------------------------------------------------------------------------------
-// шеврон Development Management и др
+// шеврон------------------------------------------------------------------------------------------
 const Devel = document.getElementById('dev');
 const LeadDev = document.getElementById('leaddev');
 const DevMan = document.getElementById('devman');
-left.addEventListener('click', function (ev) {
-   if (ev.target.nodeName === 'SPAN' && ev.target.dataset.sign === 'spanLEADDEV') {
-      ev.target.classList.toggle('chevron-right');
-      ev.target.classList.toggle('chevron-bottom');
-      Devel.classList.toggle('displayInline');
-      Devel.classList.toggle('displayNone');
-   }
-   if (ev.target.nodeName === 'SPAN' && ev.target.dataset.sign === 'spanDEVMAN') {
-      ev.target.classList.toggle('chevron-right');
-      ev.target.classList.toggle('chevron-bottom');
-      LeadDev.classList.toggle('displayInline');
-      LeadDev.classList.toggle('displayNone');
-   }
-});
-// шеврон Quality Assurance Management и др
 const Testers = document.getElementById('testers');
 const LeadQa = document.getElementById('leadqa');
 const QualMan = document.getElementById('qualman');
 left.addEventListener('click', function (ev) {
+   if (ev.target.nodeName === 'SPAN' && ev.target.dataset.sign === 'spanLEADDEV') {
+        ev.target.classList.toggle('chevron-right');
+        ev.target.classList.toggle('chevron-bottom');
+        Devel.classList.toggle('displayInline');
+        Devel.classList.toggle('displayNone');
+   }
+   if (ev.target.nodeName === 'SPAN' && ev.target.dataset.sign === 'spanDEVMAN') {
+        ev.target.classList.toggle('chevron-right');
+        ev.target.classList.toggle('chevron-bottom');
+        LeadDev.classList.toggle('displayInline');
+        LeadDev.classList.toggle('displayNone');
+   }
    if (ev.target.nodeName === 'SPAN' && ev.target.dataset.sign === 'spanLEADQA') {
-      ev.target.classList.toggle('chevron-right');
-      ev.target.classList.toggle('chevron-bottom');
-      Testers.classList.toggle('displayInline');
-      Testers.classList.toggle('displayNone');
-   }
-   if (ev.target.nodeName === 'SPAN' && ev.target.dataset.sign === 'spanQUALMAN') {
-      ev.target.classList.toggle('chevron-right');
-      ev.target.classList.toggle('chevron-bottom');
-      LeadQa.classList.toggle('displayInline');
-      LeadQa.classList.toggle('displayNone');
-   }
+        ev.target.classList.toggle('chevron-right');
+        ev.target.classList.toggle('chevron-bottom');
+        Testers.classList.toggle('displayInline');
+        Testers.classList.toggle('displayNone');
+    }
+    if (ev.target.nodeName === 'SPAN' && ev.target.dataset.sign === 'spanQUALMAN') {
+        ev.target.classList.toggle('chevron-right');
+        ev.target.classList.toggle('chevron-bottom');
+        LeadQa.classList.toggle('displayInline');
+        LeadQa.classList.toggle('displayNone');
+    }
 });
-
 //проверяем какой отдел выбираем-------------------------------------------------------------------------------------
-
 left.addEventListener('click', function (ev) {
     if (ev.target.nodeName === "LI" && ev.target.dataset.sign === 'DEV') {
         perem = developer.all_stuff;
