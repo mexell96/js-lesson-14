@@ -41,14 +41,22 @@ async function init () {
                 testers.classList.remove('bold');
                 //-------------------------------------
                 Devel.classList.remove('displayNone');
-                LeadDev.classList.toggle('displayNone');
-                Testers.classList.toggle('displayNone');
-                LeadQa.classList.toggle('displayNone');
+                LeadDev.classList.remove('displayNone');
+                Testers.classList.remove('displayNone');
+                LeadQa.classList.remove('displayNone');
+                Spandevmam.classList.remove('chevron-bottom');
+                Spanleaddev.classList.remove('chevron-bottom');
+                Spanqualman.classList.remove('chevron-bottom');
+                Spanleadqa.classList.remove('chevron-bottom');
                 //-------------------------------------
                 Devel.classList.add('displayInline');
                 LeadDev.classList.add('displayInline');
                 Testers.classList.add('displayInline');
                 LeadQa.classList.add('displayInline');
+                Spandevmam.classList.add('chevron-right');
+                Spanleaddev.classList.add('chevron-right');
+                Spanqualman.classList.add('chevron-right');
+                Spanleadqa.classList.add('chevron-right');
                 //-----------------------------------------
                 curr_sel.value = '0';
                 currRate = '1';
@@ -162,8 +170,7 @@ async function getCurrRate(currId) {
     return response.json();
 }
 
-//-------------------------------------------------------------------------------------------------------------------
-
+//-----------------------------------------------------------------------------------------------------
 const employeers = [
     {
         id: 0,
@@ -333,20 +340,23 @@ const DevMan = document.getElementById('devman');
 const Testers = document.getElementById('testers');
 const LeadQa = document.getElementById('leadqa');
 const QualMan = document.getElementById('qualman');
+
+
+
 left.addEventListener('click', function (ev) {
-   if (ev.target.nodeName === 'SPAN' && ev.target.dataset.sign === 'spanLEADDEV') {
+    if (ev.target.nodeName === 'SPAN' && ev.target.dataset.sign === 'spanLEADDEV') {
         ev.target.classList.toggle('chevron-right');
         ev.target.classList.toggle('chevron-bottom');
         Devel.classList.toggle('displayInline');
         Devel.classList.toggle('displayNone');
-   }
-   if (ev.target.nodeName === 'SPAN' && ev.target.dataset.sign === 'spanDEVMAN') {
+    }
+    if (ev.target.nodeName === 'SPAN' && ev.target.dataset.sign === 'spanDEVMAN') {
         ev.target.classList.toggle('chevron-right');
         ev.target.classList.toggle('chevron-bottom');
         LeadDev.classList.toggle('displayInline');
         LeadDev.classList.toggle('displayNone');
-   }
-   if (ev.target.nodeName === 'SPAN' && ev.target.dataset.sign === 'spanLEADQA') {
+    }
+    if (ev.target.nodeName === 'SPAN' && ev.target.dataset.sign === 'spanLEADQA') {
         ev.target.classList.toggle('chevron-right');
         ev.target.classList.toggle('chevron-bottom');
         Testers.classList.toggle('displayInline');
@@ -406,6 +416,14 @@ left.addEventListener('click', function (ev) {
     }
 })
 // кнопка очистить------------------------------------------------------------------------------------------
+
+const Spandevmam = document.getElementById('spandevmam');
+const Spanleaddev= document.getElementById('spanleaddev');
+const Spanqualman = document.getElementById('spanqualman');
+const Spanleadqa = document.getElementById('spanleadqa');
+
+
+
 document.getElementById('clear').addEventListener('click', function (ev) {
     if (ev.target.nodeName === "BUTTON") {
         devman.classList.remove('bold');
@@ -416,14 +434,22 @@ document.getElementById('clear').addEventListener('click', function (ev) {
         testers.classList.remove('bold');
         //-------------------------------------
         Devel.classList.remove('displayNone');
-        LeadDev.classList.toggle('displayNone');
-        Testers.classList.toggle('displayNone');
-        LeadQa.classList.toggle('displayNone');
+        LeadDev.classList.remove('displayNone');
+        Testers.classList.remove('displayNone');
+        LeadQa.classList.remove('displayNone');
+        Spandevmam.classList.remove('chevron-bottom');
+        Spanleaddev.classList.remove('chevron-bottom');
+        Spanqualman.classList.remove('chevron-bottom');
+        Spanleadqa.classList.remove('chevron-bottom');
         //-------------------------------------
         Devel.classList.add('displayInline');
         LeadDev.classList.add('displayInline');
         Testers.classList.add('displayInline');
         LeadQa.classList.add('displayInline');
+        Spandevmam.classList.add('chevron-right');
+        Spanleaddev.classList.add('chevron-right');
+        Spanqualman.classList.add('chevron-right');
+        Spanleadqa.classList.add('chevron-right');
         //-----------------------------------------
         for(var i = 1; i < tableMain.rows.length;){
         tableMain.deleteRow(i);
