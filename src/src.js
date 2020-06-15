@@ -19,7 +19,6 @@ async function init () {
     document.getElementById('curr_sel').addEventListener('click', async () => {
         let selectEl = document.getElementById('curr_sel');
         const selectedCurrId = selectEl.value;
-        console.log(selectedCurrId);
         
         if (selectedCurrId != '0') {
             fetchedCurrRate = await getCurrRate(selectedCurrId);
