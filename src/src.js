@@ -24,6 +24,9 @@ async function init () {
             fetchedCurrRate = await getCurrRate(selectedCurrId);
             currRate = fetchedCurrRate.Cur_OfficialRate;
             currScale = fetchedCurrRate.Cur_Scale;
+        } else {
+            currRate = '1';
+            currScale = '1';
         }
         //----------------------------------------------------------------------------------------------------
         function onClickRate() {
